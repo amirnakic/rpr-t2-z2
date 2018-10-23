@@ -64,5 +64,21 @@ public class Interval {
         return false;
     }
 
+    public Interval intersect(Interval i) {
+        if (this.getKrajnjaTacka() < i.getPocetnaTacka()) return new Interval(); //prazan Interval
+        else if (this.getPocetnaTacka() > i.getKrajnjaTacka()) return new Interval(); //prazan Interval
+        else if (this.getKrajnjaTacka() == i.getPocetnaTacka()) {
+            if (!this.isPripadnostKrajnjeTacke() || !i.isPripadnostPocetneTacke()) return new Interval(); //opet prazan interval
+            return new Interval(this.getKrajnjaTacka(), this.getKrajnjaTacka(), true, true); //interval je jedna tacka i ta tacka pripada intervalu
+        }
+        else if (this.getPocetnaTacka() == i.getKrajnjaTacka()) {
+            if (!this.isPripadnostPocetneTacke() || !i.isPripadnostKrajnjeTacke()) return new Interval(); //opet prazan interval
+            return new Interval(this.getPocetnaTacka(), this.getPocetnaTacka(), true, true); //interval je jedna tacka i ta tacka pripada intervalu
+        }
+        else if (i.getPocetnaTacka() < this.getKrajnjaTacka()) return new Interval(i.getPocetnaTacka(), this.getKrajnjaTacka(), i.isPripadnostPocetneTacke(), this.isPripadnostKrajnjeTacke());
+        else if (this.getPocetnaTacka() < i.getKrajnjaTacka()) return new Interval(this.getPocetnaTacka(), i.getKrajnjaTacka(), this.isPripadnostPocetneTacke(), i.isPripadnostKrajnjeTacke());
+        else if (i.getPocetnaTacka() == this.getPocetnaTacka() && i.getKrajnjaTacka() == this.getKrajnjaTacka()) return new Interval(this.getPocetnaTacka(), this.getKrajnjaTacka(), this.isPripadnostPocetneTacke(), this.isPripadnostKrajnjeTacke());
+        return new Interval();
+    }
     
 }
