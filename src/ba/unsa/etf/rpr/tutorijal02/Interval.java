@@ -85,5 +85,15 @@ public class Interval {
         return i1.intersect(i2);
     }
 
-    
+    @Override
+    public String toString() {
+        if (this.isPripadnostPocetneTacke()) {
+            if (this.isPripadnostKrajnjeTacke()) return new String("[" + this.getPocetnaTacka() + "," + this.getKrajnjaTacka() + "]");
+            return new String("[" + this.getPocetnaTacka() + "," + this.getKrajnjaTacka() + ")");
+        }
+        else {
+            if (this.isPripadnostKrajnjeTacke()) return new String("(" + this.getPocetnaTacka() + "," + this.getKrajnjaTacka() + "]");
+            return new String("(" + this.getPocetnaTacka() + "," + this.getKrajnjaTacka() + ")");
+        }
+    }
 }
