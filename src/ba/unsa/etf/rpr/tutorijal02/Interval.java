@@ -11,5 +11,17 @@ public class Interval {
         this.pripadnostPocetneTacke = pripadnostPocetneTacke;
         this.pripadnostKrajnjeTacke = pripadnostKrajnjeTacke;
     }
+    public double getPocetnaTacka() {
+        return pocetnaTacka;
+    }
+    public double getKrajnjaTacka() {
+        return krajnjaTacka;
+    }
+    public boolean isPripadnostPocetneTacke() {
+        return pripadnostPocetneTacke;
+    }
+    public boolean isPripadnostKrajnjeTacke() {
+        return pripadnostKrajnjeTacke;
+    }
     
 }
