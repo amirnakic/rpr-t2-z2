@@ -23,5 +23,10 @@ public class Interval {
     public boolean isPripadnostKrajnjeTacke() {
         return pripadnostKrajnjeTacke;
     }
+    public boolean isNull() {
+        if(this.getKrajnjaTacka()==0 && this.getPocetnaTacka()==0 && !pripadnostPocetneTacke && !pripadnostKrajnjeTacke)
+            return true;
+        return false;
+    }
     
 }
