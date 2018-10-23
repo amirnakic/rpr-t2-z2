@@ -57,6 +57,12 @@ public class Interval {
     public boolean isIn(double vrijednostTacke) {
         if (this.getPocetnaTacka() < vrijednostTacke && vrijednostTacke < this.getKrajnjaTacka())
             return true;
+        else if (this.getPocetnaTacka() == vrijednostTacke && this.isPripadnostPocetneTacke())
+            return true;
+        else if (this.getKrajnjaTacka() == vrijednostTacke && this.isPripadnostKrajnjeTacke())
+            return true;
         return false;
     }
+
+    
 }
