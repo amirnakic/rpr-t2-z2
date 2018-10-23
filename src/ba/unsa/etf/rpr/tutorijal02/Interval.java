@@ -80,5 +80,10 @@ public class Interval {
         else if (i.getPocetnaTacka() == this.getPocetnaTacka() && i.getKrajnjaTacka() == this.getKrajnjaTacka()) return new Interval(this.getPocetnaTacka(), this.getKrajnjaTacka(), this.isPripadnostPocetneTacke(), this.isPripadnostKrajnjeTacke());
         return new Interval();
     }
+
+    public static Interval intersect(Interval i1, Interval i2) {
+        return i1.intersect(i2);
+    }
+
     
 }
