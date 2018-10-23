@@ -90,7 +90,8 @@ public class Interval {
 
     @Override
     public String toString() {
-        if (this.isPripadnostPocetneTacke()) {
+        if (this.isNull()) return new String("()");
+        else if (this.isPripadnostPocetneTacke()) {
             if (this.isPripadnostKrajnjeTacke())
                 return new String("[" + this.getPocetnaTacka() + "," + this.getKrajnjaTacka() + "]");
             return new String("[" + this.getPocetnaTacka() + "," + this.getKrajnjaTacka() + ")");
