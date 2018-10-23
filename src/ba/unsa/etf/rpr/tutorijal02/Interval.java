@@ -28,5 +28,9 @@ public class Interval {
             return true;
         return false;
     }
-    
+    public boolean isIn(double vrijednostTacke) {
+        if (this.getPocetnaTacka() < vrijednostTacke && vrijednostTacke < this.getKrajnjaTacka())
+            return true;
+        return false;
+    }
 }
