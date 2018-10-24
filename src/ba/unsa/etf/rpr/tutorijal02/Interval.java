@@ -65,22 +65,37 @@ public class Interval {
     }
 
     public Interval intersect(Interval i) {
-        if (this.getKrajnjaTacka() < i.getPocetnaTacka()) return new Interval(); //prazan Interval
-        else if (this.getPocetnaTacka() > i.getKrajnjaTacka()) return new Interval(); //prazan Interval
+        if (this.getKrajnjaTacka() < i.getPocetnaTacka()) return new Interval();
+        else if (this.getPocetnaTacka() > i.getKrajnjaTacka()) return new Interval();
         else if (this.getKrajnjaTacka() == i.getPocetnaTacka()) {
             if (!this.isPripadnostKrajnjeTacke() || !i.isPripadnostPocetneTacke())
-                return new Interval(); //opet prazan interval
-            return new Interval(this.getKrajnjaTacka(), this.getKrajnjaTacka(), true, true); //interval je jedna tacka i ta tacka pripada intervalu
+                return new Interval();
+            return new Interval(this.getKrajnjaTacka(), this.getKrajnjaTacka(), true, true);
         } else if (this.getPocetnaTacka() == i.getKrajnjaTacka()) {
             if (!this.isPripadnostPocetneTacke() || !i.isPripadnostKrajnjeTacke())
-                return new Interval(); //opet prazan interval
-            return new Interval(this.getPocetnaTacka(), this.getPocetnaTacka(), true, true); //interval je jedna tacka i ta tacka pripada intervalu
-        } else if (i.getPocetnaTacka() < this.getKrajnjaTacka())
-            return new Interval(i.getPocetnaTacka(), this.getKrajnjaTacka(), i.isPripadnostPocetneTacke(), this.isPripadnostKrajnjeTacke());
-        else if (this.getPocetnaTacka() < i.getKrajnjaTacka())
-            return new Interval(this.getPocetnaTacka(), i.getKrajnjaTacka(), this.isPripadnostPocetneTacke(), i.isPripadnostKrajnjeTacke());
-        else if (i.getPocetnaTacka() == this.getPocetnaTacka() && i.getKrajnjaTacka() == this.getKrajnjaTacka())
-            return new Interval(this.getPocetnaTacka(), this.getKrajnjaTacka(), this.isPripadnostPocetneTacke(), this.isPripadnostKrajnjeTacke());
+                return new Interval();
+            return new Interval(this.getPocetnaTacka(), this.getPocetnaTacka(), true, true);
+        } else if (i.getPocetnaTacka() == this.getPocetnaTacka() && i.getKrajnjaTacka() == this.getKrajnjaTacka()) {
+            if (!this.isPripadnostPocetneTacke() || !i.isPripadnostPocetneTacke()) {
+                if (!this.isPripadnostKrajnjeTacke() || !i.isPripadnostKrajnjeTacke())
+                    return new Interval(this.getPocetnaTacka(), this.getKrajnjaTacka(), false, false);
+                else return new Interval(this.getPocetnaTacka(), this.getKrajnjaTacka(), false, true);
+            } else if (this.isPripadnostPocetneTacke() && i.isPripadnostPocetneTacke()) {
+                if (!this.isPripadnostKrajnjeTacke() || !i.isPripadnostKrajnjeTacke())
+                    return new Interval(this.getPocetnaTacka(), this.getKrajnjaTacka(), true, false);
+                else return new Interval(this.getPocetnaTacka(), this.getKrajnjaTacka(), true, true);
+            }
+        } else if (i.getPocetnaTacka() < this.getPocetnaTacka()) {
+            if (i.getKrajnjaTacka() > this.getKrajnjaTacka())
+                return new Interval(this.getPocetnaTacka(), this.getKrajnjaTacka(), this.isPripadnostPocetneTacke(), this.isPripadnostKrajnjeTacke());
+            else
+                return new Interval(this.getPocetnaTacka(), i.getKrajnjaTacka(), this.isPripadnostPocetneTacke(), i.isPripadnostKrajnjeTacke());
+        } else if (this.getPocetnaTacka() < i.getPocetnaTacka()) {
+            if (this.getKrajnjaTacka() > i.getKrajnjaTacka())
+                return new Interval(i.getPocetnaTacka(), i.getKrajnjaTacka(), i.isPripadnostPocetneTacke(), i.isPripadnostKrajnjeTacke());
+            else
+                return new Interval(i.getPocetnaTacka(), this.getKrajnjaTacka(), i.isPripadnostPocetneTacke(), this.isPripadnostKrajnjeTacke());
+        }
         return new Interval();
     }
 
@@ -104,8 +119,8 @@ public class Interval {
 
     @Override
     public boolean equals(Object o) {
-        Interval i = (Interval)o;
-        if (this.getPocetnaTacka() == i.getPocetnaTacka() && this.getKrajnjaTacka() == i.getKrajnjaTacka() && this.isPripadnostPocetneTacke() == i.isPripadnostPocetneTacke() && this.isPripadnostKrajnjeTacke() && i.isPripadnostKrajnjeTacke())
+        Interval i = (Interval) o;
+        if (this.getPocetnaTacka() == i.getPocetnaTacka() && this.getKrajnjaTacka() == i.getKrajnjaTacka() && this.isPripadnostPocetneTacke() == i.isPripadnostPocetneTacke() && this.isPripadnostKrajnjeTacke() == i.isPripadnostKrajnjeTacke())
             return true;
         return false;
     }
